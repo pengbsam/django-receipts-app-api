@@ -1,0 +1,12 @@
+language: python
+python:
+    - "3.6"
+
+services: 
+    - docker
+
+before_script: pip install docker-compose
+
+# each time we sent code change to github, travis will run below script to test the build and give use error message.
+script:
+    - docker-compose run app sh -c "python manage.py test && flake8"
