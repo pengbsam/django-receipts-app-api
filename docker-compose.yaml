@@ -1,0 +1,17 @@
+# docker compose version. 
+version: "3"
+# service details 
+services: 
+    # application to run, can be anything.
+    app:
+        # what the build, since there is only 1 build.
+        build:
+            context: .
+        # port map from host port (first) to docker port (second)
+        ports:
+            - "8000:8000"
+        # map the app directory to : image directory
+        volumes: 
+            - ./app:/app
+        command: >
+            sh -c "python manage.py runserver 0.0.0.0:8000"
